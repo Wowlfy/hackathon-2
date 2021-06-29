@@ -2,6 +2,11 @@
 
 {% block title %}Fiverr - Plateforme de services freelances pour entreprises{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('rightcolumn') }}
+{% endblock %}
+
 {% block body %}
   {% include "component/_header.hml.twig" %}
 <div class="main">
