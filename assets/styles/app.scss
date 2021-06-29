@@ -1,6 +1,73 @@
+@import "~bootstrap/scss/bootstrap";
 @import 'variables.scss';
 @import "~bootstrap/scss/bootstrap";
 body {
-    background-color: $wild-color;
-    color: $light;
+    background-color: $light;
+    color: $green;
+    font-weight: 600;
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .navbar {
+        width: 80vw;
+        height: 100px;
+        background-color: $light;
+    }
+    .btn {
+        background-color: $green;
+        color: $light;
+        font-weight: 600;
+        height: 35px;
+        border: none;
+    }
+    .form-control {
+        height: 35px;
+    }
+    .navbar-nav {
+        margin-left: 331px;
+    }
+    .green {
+        color: $green;
+    }
+    .blue {
+        color: $blue;
+    }
+    .grey {
+        color: grey;
+    }
+    .subNavbar {
+        display: flex;
+        justify-content: space-between;
+        width: 80vw;
+    }
+    .new {
+        color: palevioletred;
+        border: 1px solid palevioletred;
+        border-radius: 20px;
+    }
+    .greyLine {
+        border-top: 0.1em solid grey;
+        width: 100vw;
+    }
+    #request_content {
+        height: 100px;
+    }
+    .addRequest {
+        border: 1px solid grey;
+    }
+    .addRequest .btn {
+        background-color: $light;
+        color: $green;
+        border: 1px solid $green;
+    }
+    .addRequest .btn:hover {
+        background-color: $green;
+        color: $light;
+    }
+    .fake-content {
+        height: 100vh;
+    }
 }

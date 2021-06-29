@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home
-{% endblock %}
+{% block title %}Fiverr - Plateforme de services freelances pour entreprises{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -9,5 +8,9 @@
 {% endblock %}
 
 {% block body %}
-    {% include 'component/_rightcolumn.html.twig' %}
+  {% include "component/_header.hml.twig" %}
+<div class="main">
+  <div class="fake-content col-8"></div>
+  {% include "component/_rightcolumn.html.twig" %}
+</div>
 {% endblock %}
