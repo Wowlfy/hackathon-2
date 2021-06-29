@@ -7,6 +7,10 @@
   {{ encore_entry_script_tags('custom') }}
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('rightcolumn') }}
+{% endblock %}
 
 {% block body %}
   {% include "component/_header.hml.twig" %}
