@@ -23,7 +23,7 @@ body {
         justify-content: center;
     }
     .navbar {
-        width: 80vw;
+        width: auto;
         height: 100px;
         background-color: $light;
     }
@@ -34,11 +34,29 @@ body {
         height: 35px;
         border: none;
     }
+    .btn-white {
+        background-color: $light;
+        color: $green;
+        border: 1px solid $green;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        height: auto;
+    }
+    .btn-white:hover {
+        background-color: $green;
+        color: $light;
+        outline: none;
+    }
     .form-control {
         height: 35px;
     }
     .navbar-nav {
         margin-left: 331px;
+    }
+    .nav-link a {
+        width:fit-content;
     }
     .green {
         color: $green;
