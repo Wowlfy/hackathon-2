@@ -10,10 +10,8 @@
 
 {% block body %}
   {% include "component/_header.hml.twig" %}
-  <div class="main">
-    <div class="fake-content">
+    <div class="fake-content row d-flex justifify-content-center col-12 m-0 p-0">
+      {% include "component/_chat.html.twig" %}
       {% include "component/_rightcolumn.html.twig" %}
     </div>
-  </div>
-  {% include "component/_chat.html.twig" %}
 {% endblock %}

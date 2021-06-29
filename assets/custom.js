@@ -1,3 +1,4 @@
+
 Talk.ready.then(function() {
     var me = new Talk.User({
         id: '123456',
