@@ -2,15 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\Request;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\User;
+use App\Entity\HelpRequest;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class RequestType extends AbstractType
+class HelpRequestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -23,7 +24,7 @@ class RequestType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Request::class,
+            'data_class' => HelpRequest::class,
         ]);
     }
 }
