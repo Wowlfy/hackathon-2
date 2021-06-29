@@ -38,6 +38,7 @@ Talk.ready.then(function() {
         });
     }
 
+
     var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
     conversation.setParticipant(me);
     conversation.setParticipant(other);
