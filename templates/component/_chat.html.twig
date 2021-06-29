@@ -1,0 +1,49 @@
+<div class="chat">
+    <!-- minified snippet to load TalkJS without delaying your page -->
+    <script>
+        (function(t,a,l,k,j,s){
+        s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
+        ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
+        .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
+    </script>
+
+    <!-- container element in which TalkJS will display a chat UI -->
+    <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
+        <i>Loading chat...</i>
+    </div>
+</div>
+
+<script>
+Talk.ready.then(function() {
+    var me = new Talk.User({
+        id: '{{ app.user.id }}',
+        name: '{{ app.user.username }}',
+        email: '{{ app.user.email }}',
+        photoUrl: '{{ app.user.profilePicture }}',
+        welcomeMessage: 'Hey there! How are you? :-)',
+    });
+    window.talkSession = new Talk.Session({
+        appId: 'tJCERajb',
+        me: me
+    });
+    var idother='45';
+    if(idother=='45') {
+        var other = new Talk.User({
+            id: idother,
+            name: 'Sebastifan',
+            email: 'Sebastian@example.com',
+            photoUrl: 'https://www.animaux-online.com/data/document/1/668.800.jpg',
+            welcomeMessage: 'Hey, how can I help?',
+            role: 'default'
+        });
+    }
+
+
+    var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
+    conversation.setParticipant(me);
+    conversation.setParticipant(other);
+
+    var inbox = talkSession.createInbox({selected: conversation});
+    inbox.mount(document.getElementById('talkjs-container'));
+  });
+  </script>

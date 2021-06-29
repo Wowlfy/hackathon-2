@@ -1,28 +1,28 @@
-<div class="addRequest col-2 align-self-end d-flex flex-column align-items-center justify-content-center">
-{{ form_start(form, {
-              'attr': {
-                  'class': 'col-10 d-flex flex-column align-items-center justify-content-center'
-              }}) }}
-  {{ form_errors(form) }}
-  <div class="col-12 col-md-12 mt-3">
-      {{ form_label(form.content, 'Your question') }}
-      {{ form_widget(form.content, {
-          'attr': {
-              'id': 'content',
-              'class': 'form-control shadow-sm bg-white rounded mt-2 p-3'
-          }
-      }) }}
-  </div>
-  <div class="col-12 col-md-12 mt-3">
-      {{ form_label(form.picture, 'Your picture') }}
-      {{ form_widget(form.picture, {
-          'attr': {
-              'id': 'picture',
-              'placeholder': 'http://www.mypic.com',
-              'class': 'form-control shadow-sm bg-white rounded mt-2 p-3'
-          }
-      }) }}
-  </div>
-  <button class="btn form-check col-12 mt-4 mb-5">Ask!</button>
-{{ form_end(form) }}
+<div class="addRequest col-12 align-self-end d-flex flex-column align-items-center justify-content-center m-0 p-0">
+    {{ form_start(form, {
+                'attr': {
+                    'class': 'col-10 d-flex flex-column align-items-center justify-content-center'
+                }}) }}
+    {{ form_errors(form) }}
+    <div class="col-12 mt-3">
+        {{ form_label(form.content, 'Your question') }}
+        {{ form_widget(form.content, {
+            'attr': {
+                'id': 'content',
+                'class': 'form-control shadow-sm bg-white rounded mt-2 p-3'
+            }
+        }) }}
+    </div>
+    <div class="col-12 mt-3">
+        {{ form_label(form.picture, 'Your picture') }}
+        {{ form_widget(form.picture, {
+            'attr': {
+                'id': 'picture',
+                'placeholder': 'http://www.mypic.com',
+                'class': 'form-control shadow-sm bg-white rounded mt-2 p-3'
+            }
+        }) }}
+    </div>
+    <button class="btn form-check col-12 mt-4 mb-5">Ask!</button>
+    {{ form_end(form) }}
 </div>
