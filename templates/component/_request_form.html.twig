@@ -4,7 +4,7 @@
                     'class': 'col-10 d-flex flex-column align-items-center justify-content-center'
                 }}) }}
     {{ form_errors(form) }}
-    <div class="col-12 col-md-12 mt-3">
+    <div class="col-12 mt-3">
         {{ form_label(form.content, 'Your question') }}
         {{ form_widget(form.content, {
             'attr': {
@@ -13,7 +13,7 @@
             }
         }) }}
     </div>
-    <div class="col-12 col-md-12 mt-3">
+    <div class="col-12 mt-3">
         {{ form_label(form.picture, 'Your picture') }}
         {{ form_widget(form.picture, {
             'attr': {

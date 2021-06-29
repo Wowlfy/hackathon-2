@@ -1,4 +1,4 @@
-
+/*
 Talk.ready.then(function() {
     var me = new Talk.User({
         id: '123456',
@@ -28,3 +28,4 @@ Talk.ready.then(function() {
     var inbox = talkSession.createInbox({selected: conversation});
     inbox.mount(document.getElementById('talkjs-container'));
   });
+  */
