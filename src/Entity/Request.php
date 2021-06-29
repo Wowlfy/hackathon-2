@@ -21,7 +21,7 @@ class Request
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="requests")
      * @ORM\JoinColumn(nullable=false)
      */
-    private User $author;
+    private ?User $author;
 
     /**
      * @ORM\Column(type="text")
@@ -29,9 +29,9 @@ class Request
     private string $content;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $picture;
+    private ?string $picture;
 
     public function getId(): ?int
     {
@@ -67,7 +67,7 @@ class Request
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
 
