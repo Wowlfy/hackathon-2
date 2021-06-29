@@ -1,11 +1,9 @@
 @import 'variables.scss';
 @import "~bootstrap/scss/bootstrap";
-body {
-    margin: 50px 0;
-}
 
-.carousel {
-    width: 18rem;
+
+.vertical.carousel.slide {
+    height: 50%;
 }
 
 .vertical.carousel .carousel-control {
