@@ -20,6 +20,7 @@ class UserFixtures extends Fixture
             $user->setUsername($faker->userName());
             $user->setEmail($faker->email());
             $user->setProfilePicture("https://picsum.photos/30/30");
+            $user->setRoles(['ROLE_USER']);
             $manager->persist($user);
         }
 
