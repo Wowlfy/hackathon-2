@@ -59,7 +59,30 @@ body {
     }
 
     .greyLine {
-        border: 0.1em solid grey;
+        border-top: 0.1em solid grey;
         width: 100vw;
+    }
+
+    #request_content {
+        height: 100px;
+    }
+
+    .addRequest {
+        border: 1px solid grey;
+    }
+
+    .addRequest .btn {
+        background-color: $light;
+        color: $green;
+        border: 1px solid $green;
+    }
+
+    .addRequest .btn:hover {
+        background-color: $green;
+        color: $light;
+    }
+
+    .fake-content {
+        height: 100vh;
     }
 }

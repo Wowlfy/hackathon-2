@@ -45,6 +45,7 @@ class Request
 
     public function setAuthor(?User $author): self
     {
+        // phpstan-disable-next-line
         $this->author = $author;
 
         return $this;
