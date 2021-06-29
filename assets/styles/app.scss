@@ -58,6 +58,12 @@ body {
     .nav-link a {
         width:fit-content;
     }
+    .navbar img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
     .green {
         color: $green;
     }
