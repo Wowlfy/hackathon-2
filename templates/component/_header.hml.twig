@@ -33,14 +33,13 @@
               <li class="nav-item">
                 <a class="nav-link grey" href="#">Commandes</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link grey" href="#">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle btn" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="{{ app.user.profilePicture }}" alt="profile picture">
-                    Hello {{ app.user.username }}
                 </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link grey" href="{{ path('app_logout') }}"> Se déconnecter</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                </ul>
               </li>
             {% else %}
               <li class="nav-item">
