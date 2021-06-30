@@ -2,36 +2,36 @@
 
 namespace App\Entity;
 
-use App\Repository\RequestRepository;
+use App\Repository\HelpRequestRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=RequestRepository::class)
+ * @ORM\Entity(repositoryClass=HelpRequestRepository::class)
  */
-class Request
+class HelpRequest
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="requests")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="helpRequests")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?User $author;
+    private $author;
 
     /**
      * @ORM\Column(type="text")
      */
-    private string $content;
+    private $content;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $picture;
+    private $picture;
 
     public function getId(): ?int
     {
@@ -45,7 +45,6 @@ class Request
 
     public function setAuthor(?User $author): self
     {
-        // phpstan-disable-next-line
         $this->author = $author;
 
         return $this;
