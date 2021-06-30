@@ -11,10 +11,14 @@
     <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
         <i>Loading chat...</i>
     </div>
+    {{ dump(users) }}
 </div>
 
 <script>
+
 Talk.ready.then(function() {
+    var users = {{ users|json_encode }};
+    console.log(users);
     var me = new Talk.User({
         id: '{{ app.user.id }}',
         name: '{{ app.user.username }}',
@@ -26,24 +30,39 @@ Talk.ready.then(function() {
         appId: 'tJCERajb',
         me: me
     });
-    var idother='45';
-    if(idother=='45') {
-        var other = new Talk.User({
-            id: idother,
-            name: 'Sebastifan',
-            email: 'Sebastian@example.com',
-            photoUrl: 'https://www.animaux-online.com/data/document/1/668.800.jpg',
-            welcomeMessage: 'Hey, how can I help?',
-            role: 'default'
-        });
-    }
+    
+    {% for user in users %}
+        {% if user.id == 46 %};
+            var other = new Talk.User({
+                id: '{{ user.id }}',
+                name: '{{ user.username }}',
+                email: '{{ user.email }}',
+                photoUrl: '{{ user.profilePicture }}',
+                welcomeMessage: 'Hey, how can I help?',
+                role: 'default'
+            });
+        {% endif %}
+    {% endfor %}
 
+        {% for user in users %}
 
-    var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
-    conversation.setParticipant(me);
-    conversation.setParticipant(other);
+                
+                var test2 = new Talk.User({
+                    id: '{{ user.id }}',
+                    name: '{{ user.username }}',
+                    email: '{{ user.email }}',
+                    photoUrl: '{{ user.profilePicture }}',
+                    welcomeMessage: 'Hey, how can I help?',
+                    role: 'default'
+                });
 
+        var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
+        conversation.setParticipant(me);
+        conversation.setParticipant(test2);
+                
+        {% endfor %}
     var inbox = talkSession.createInbox({selected: conversation});
     inbox.mount(document.getElementById('talkjs-container'));
   });
+
   </script>

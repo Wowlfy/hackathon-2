@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Request;
 use App\Form\RequestType;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Service\Attribute\Required;
@@ -16,7 +17,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(UserRepository $userRepository): Response
     {
         $user = new User();
         //$user = $this->getUser()->getUsername();
@@ -31,10 +32,10 @@ class HomeController extends AbstractController
             $entityManager->flush();
         }
 
-        //dd($user);
+        $users = $userRepository->findBy([]);
 
         return $this->render('home/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(), 'users' => $users
         ]);
     }
 }
