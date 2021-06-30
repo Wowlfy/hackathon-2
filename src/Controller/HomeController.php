@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Form\HelperType;
 use App\Entity\HelpRequest;
 use App\Form\HelpRequestType;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,9 +18,12 @@ class HomeController extends AbstractController
      */
     public function index(Request $request): Response
     {
+
         $helpRequest = new HelpRequest();
         $form = $this->createForm(HelpRequestType::class, $helpRequest);
+
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $helpRequest->setAuthor($this->getUser());
@@ -30,6 +34,7 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
+
         $helpRequests = $this->getDoctrine()
         ->getRepository(HelpRequest::class)
         ->findAll();
@@ -39,4 +44,16 @@ class HomeController extends AbstractController
             'helpRequests' => $helpRequests
         ]);
     }
+
+    /**
+     * @Route("/help", name="help")
+     */
+    public function help(): Response
+    {
+        $helpRequest = $this->helpRequest;
+        $helpRequest->addHelpers();
+
+        return $this->redirectToRoute('home');
+    }
+    
 }
