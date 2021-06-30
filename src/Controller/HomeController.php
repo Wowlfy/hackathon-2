@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-
-use App\Form\HelperType;
+use App\Repository\UserRepository;
 use App\Entity\HelpRequest;
 use App\Form\HelpRequestType;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +15,8 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(Request $request): Response
+    public function index(Request $request, UserRepository $userRepository): Response
+
     {
 
         $helpRequest = new HelpRequest();
@@ -33,15 +33,19 @@ class HomeController extends AbstractController
 
             return $this->redirectToRoute('home');
         }
+        
+        $users = $userRepository->findBy([]);
 
 
         $helpRequests = $this->getDoctrine()
         ->getRepository(HelpRequest::class)
         ->findAll();
+        $helpRequests;
 
         return $this->render('home/index.html.twig', [
             'form' => $form->createView(),
-            'helpRequests' => $helpRequests
+            'helpRequests' => $helpRequests,
+            'users' => $users
         ]);
     }
 
