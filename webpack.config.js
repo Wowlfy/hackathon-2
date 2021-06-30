@@ -34,10 +34,11 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry('custom', './assets/custom.js')
 
-    .addStyleEntry('rightcolumn', './assets/styles/rightcolumn.scss')
+.addStyleEntry('rightcolumn', './assets/styles/rightcolumn.scss')
+    .addStyleEntry('profil', './assets/styles/profil.scss')
 
-    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./assets/controllers.json')
+// enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
+.enableStimulusBridge('./assets/controllers.json')
 
 // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
 .splitEntryChunks()
