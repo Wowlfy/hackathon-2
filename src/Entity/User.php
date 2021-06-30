@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\HelpRequest;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -41,13 +42,13 @@ class User implements UserInterface
     private ?string $profilePicture;
 
     /**
-     * @ORM\OneToMany(targetEntity=Request::class, mappedBy="author", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=HelpRequest::class, mappedBy="author", orphanRemoval=true)
      */
-    private Collection $requests;
+    private $helpRequests;
 
     public function __construct()
     {
-        $this->requests = new ArrayCollection();
+        $this->helpRequests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,29 +146,29 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Request[]
+     * @return Collection|HelpRequest[]
      */
-    public function getRequests(): Collection
+    public function getHelpRequests(): Collection
     {
-        return $this->requests;
+        return $this->helpRequests;
     }
 
-    public function addRequest(Request $request): self
+    public function addHelpRequest(HelpRequest $helpRequest): self
     {
-        if (!$this->requests->contains($request)) {
-            $this->requests[] = $request;
-            $request->setAuthor($this);
+        if (!$this->helpRequests->contains($helpRequest)) {
+            $this->helpRequests[] = $helpRequest;
+            $helpRequest->setAuthor($this);
         }
 
         return $this;
     }
 
-    public function removeRequest(Request $request): self
+    public function removeHelpRequest(HelpRequest $helpRequest): self
     {
-        if ($this->requests->removeElement($request)) {
+        if ($this->helpRequests->removeElement($helpRequest)) {
             // set the owning side to null (unless already changed)
-            if ($request->getAuthor() === $this) {
-                $request->setAuthor(null);
+            if ($helpRequest->getAuthor() === $this) {
+                $helpRequest->setAuthor(null);
             }
         }
 
