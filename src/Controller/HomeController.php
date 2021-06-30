@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\UserRepository;
 use App\Entity\HelpRequest;
 use App\Form\HelpRequestType;
+use App\Repository\HelpRequestRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,8 +16,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(Request $request, UserRepository $userRepository): Response
-
+    public function index(Request $request, UserRepository $userRepository, HelpRequestRepository $helpers): Response
     {
 
         $helpRequest = new HelpRequest();
@@ -36,28 +36,44 @@ class HomeController extends AbstractController
         
         $users = $userRepository->findBy([]);
 
-
         $helpRequests = $this->getDoctrine()
         ->getRepository(HelpRequest::class)
         ->findAll();
-        $helpRequests;
+
+        $owner = $this->getUser()->getHelpRequests();
+        //dd($owner);
+        
 
         return $this->render('home/index.html.twig', [
             'form' => $form->createView(),
             'helpRequests' => $helpRequests,
-            'users' => $users
+            'users' => $users,
+            'owner' => $owner
         ]);
     }
 
     /**
-     * @Route("/help", name="help")
+     * @Route("/help/{id}", name="help")
      */
-    public function help(): Response
+    public function help(?int $id, HelpRequestRepository $helpRequestRepository): Response
     {
-        $helpRequest = $this->helpRequest;
-        $helpRequest->addHelpers();
+        $user = $this->getUser();
+        
+        $helpRequest = $helpRequestRepository->findOneby(['id' => $id]);
+        
+        $helpRequest->addHelper($user);
 
-        return $this->redirectToRoute('home');
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($helpRequest);
+        $entityManager->flush();
+        
+        $helpers = $helpRequest->getHelpers();
+
+        return $this->redirectToRoute('home', [
+            'helpers' => $helpers,
+        ]);
     }
+    
+
     
 }
