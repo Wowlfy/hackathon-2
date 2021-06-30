@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HelpRequestRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,16 @@ class HelpRequest
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class)
+     */
+    private $helpers;
+
+    public function __construct()
+    {
+        $this->helpers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +82,30 @@ class HelpRequest
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getHelpers(): Collection
+    {
+        return $this->helpers;
+    }
+
+    public function addHelper(User $helper): self
+    {
+        if (!$this->helpers->contains($helper)) {
+            $this->helpers[] = $helper;
+        }
+
+        return $this;
+    }
+
+    public function removeHelper(User $helper): self
+    {
+        $this->helpers->removeElement($helper);
 
         return $this;
     }
