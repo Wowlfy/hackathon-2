@@ -13,21 +13,7 @@
         {% for helpRequest in helpRequests %}
             <div class="item active">
                 <div class="card">
-                    <img class="card-img-top" src="{{ helpRequest.picture }}" alt="Card image cap">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                        <div>
-                            <h5 class="card-title">{{ helpRequest.author.username }}</h5>
-                            <p class="card-text">{{ helpRequest.content }}</p>
-                        </div>
-                        <div class="mb-4 d-flex flex-column">
-                            <a href="#" class="btn btn-primary mb-5">I can help !</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img class="card-img-top" src="{{ helpRequest.picture }}" alt="Card image cap">
+                   <img class="card-img-top" src="{{ helpRequest.picture }}" alt="Card image cap">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
                             <h5 class="card-title">{{ helpRequest.author.username }}</h5>
@@ -40,6 +26,18 @@
                 </div>
             </div>
         {% endfor %}
+            <div class="item">
+                <div class="card">
+                    <img class="card-img-top" src="https://www.success.com/wp-content/uploads/2016/02/holdontight.jpg" alt="Card image cap">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title">Fiverr Helpers</h5>
+                            <p class="card-text">Help your community!!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
     </div>
         <a href="#carousel-example-generic" class="left carousel-control" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
