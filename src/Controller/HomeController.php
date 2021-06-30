@@ -30,8 +30,13 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
+        $helpRequests = $this->getDoctrine()
+        ->getRepository(HelpRequest::class)
+        ->findAll();
+
         return $this->render('home/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'helpRequests' => $helpRequests
         ]);
     }
 }
