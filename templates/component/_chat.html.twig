@@ -1,3 +1,4 @@
+{% if app.user is not empty %}
 <div class="chat">
     <!-- minified snippet to load TalkJS without delaying your page -->
     <script>
@@ -17,52 +18,46 @@
 <script>
 
 Talk.ready.then(function() {
-    var users = {{ users|json_encode }};
-    console.log(users);
     var me = new Talk.User({
         id: '{{ app.user.id }}',
         name: '{{ app.user.username }}',
         email: '{{ app.user.email }}',
         photoUrl: '{{ app.user.profilePicture }}',
-        welcomeMessage: 'Hey there! How are you? :-)',
+        welcomeMessage: 'Hey, how can I help?',
     });
     window.talkSession = new Talk.Session({
         appId: 'tJCERajb',
         me: me
     });
     
-    {% for user in users %}
-        {% if user.id == 46 %};
-            var other = new Talk.User({
-                id: '{{ user.id }}',
-                name: '{{ user.username }}',
-                email: '{{ user.email }}',
-                photoUrl: '{{ user.profilePicture }}',
-                welcomeMessage: 'Hey, how can I help?',
-                role: 'default'
-            });
-        {% endif %}
-    {% endfor %}
-
-        {% for user in users %}
-
-                
-                var test2 = new Talk.User({
-                    id: '{{ user.id }}',
-                    name: '{{ user.username }}',
-                    email: '{{ user.email }}',
-                    photoUrl: '{{ user.profilePicture }}',
-                    welcomeMessage: 'Hey, how can I help?',
-                    role: 'default'
+    {% for helpRequest in helpRequests %}
+            {% if helpRequest.author.id == 2 %};
+                var author = new Talk.User({
+                    id: '{{ helpRequest.author.id }}',
+                    name: '{{ helpRequest.author.username }}',
+                    email: '{{ helpRequest.author.email }}',
+                    photoUrl: '{{ helpRequest.author.profilePicture }}',
                 });
 
-        var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
+
+            var request = new Talk.User({
+                id: '{{ helpRequest.id }}',
+                name: '{{ helpRequest.id }}',
+            });
+
+
+
+
+        {% endif %}
+    {% endfor %}
+        var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, author, request))
         conversation.setParticipant(me);
-        conversation.setParticipant(test2);
+        conversation.setParticipant(author);
+
                 
-        {% endfor %}
+
     var inbox = talkSession.createInbox({selected: conversation});
     inbox.mount(document.getElementById('talkjs-container'));
   });
-
+{% endif %}
   </script>
