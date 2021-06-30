@@ -12,7 +12,6 @@
     <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
         <i>Loading chat...</i>
     </div>
-    {{ dump(users) }}
 </div>
 
 <script>
@@ -31,28 +30,20 @@ Talk.ready.then(function() {
     });
     
     {% for helpRequest in helpRequests %}
-            {% if helpRequest.author.id == 2 %};
-                var author = new Talk.User({
-                    id: '{{ helpRequest.author.id }}',
-                    name: '{{ helpRequest.author.username }}',
-                    email: '{{ helpRequest.author.email }}',
-                    photoUrl: '{{ helpRequest.author.profilePicture }}',
-                });
-
-
-            var request = new Talk.User({
-                id: '{{ helpRequest.id }}',
-                name: '{{ helpRequest.id }}',
+        {% if helpRequest.author.id == 3 %}
+            var author = new Talk.User({
+                id: '{{ helpRequest.author.id }}',
+                name: '{{ helpRequest.author.username }}',
+                email: '{{ helpRequest.author.email }}',
+                photoUrl: '{{ helpRequest.author.profilePicture }}',
+                welcomeMessage: 'd',
             });
-
-
-
-
         {% endif %}
     {% endfor %}
-        var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, author, request))
-        conversation.setParticipant(me);
-        conversation.setParticipant(author);
+
+    var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, author))
+    conversation.setParticipant(me);
+    conversation.setParticipant(author);
 
                 
 
