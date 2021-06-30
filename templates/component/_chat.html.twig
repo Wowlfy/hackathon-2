@@ -22,7 +22,7 @@ Talk.ready.then(function() {
         name: '{{ app.user.username }}',
         email: '{{ app.user.email }}',
         photoUrl: '{{ app.user.profilePicture }}',
-        welcomeMessage: 'Hey, how can I help?',
+        welcomeMessage: 'Hey',
     });
     window.talkSession = new Talk.Session({
         appId: 'tJCERajb',
@@ -30,13 +30,13 @@ Talk.ready.then(function() {
     });
     
     {% for helpRequest in helpRequests %}
-        {% if helpRequest.author.id == 3 %}
+        {% if helpRequest.author.id == 40 %}
             var author = new Talk.User({
                 id: '{{ helpRequest.author.id }}',
                 name: '{{ helpRequest.author.username }}',
                 email: '{{ helpRequest.author.email }}',
                 photoUrl: '{{ helpRequest.author.profilePicture }}',
-                welcomeMessage: 'd',
+                welcomeMessage: 'Hey',
             });
         {% endif %}
     {% endfor %}
