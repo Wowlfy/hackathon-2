@@ -2,36 +2,48 @@
 
 namespace App\Entity;
 
-use App\Repository\RequestRepository;
+use App\Repository\HelpRequestRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=RequestRepository::class)
+ * @ORM\Entity(repositoryClass=HelpRequestRepository::class)
  */
-class Request
+class HelpRequest
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="requests")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="helpRequests")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?User $author;
+    private $author;
 
     /**
      * @ORM\Column(type="text")
      */
-    private string $content;
+    private $content;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $picture;
+    private $picture;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class)
+     */
+    private $helpers;
+
+    public function __construct()
+    {
+        $this->helpers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -45,7 +57,6 @@ class Request
 
     public function setAuthor(?User $author): self
     {
-        // phpstan-disable-next-line
         $this->author = $author;
 
         return $this;
@@ -71,6 +82,30 @@ class Request
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getHelpers(): Collection
+    {
+        return $this->helpers;
+    }
+
+    public function addHelper(User $helper): self
+    {
+        if (!$this->helpers->contains($helper)) {
+            $this->helpers[] = $helper;
+        }
+
+        return $this;
+    }
+
+    public function removeHelper(User $helper): self
+    {
+        $this->helpers->removeElement($helper);
 
         return $this;
     }

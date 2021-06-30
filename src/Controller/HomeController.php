@@ -4,12 +4,13 @@ namespace App\Controller;
 
 
 use App\Entity\User;
-use App\Entity\Request;
 use App\Form\RequestType;
 use App\Repository\UserRepository;
+use App\Entity\HelpRequest;
+use App\Form\HelpRequestType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Service\Attribute\Required;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
@@ -17,23 +18,23 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(UserRepository $userRepository): Response
-    {
-        $user = new User();
-        //$user = $this->getUser()->getUsername();
+    public function index(Request $request, UserRepository $userRepository): Response
 
-        $request = new Request();
-        $form = $this->createForm(RequestType::class, $request);
+    {
+        $helpRequest = new HelpRequest();
+        $form = $this->createForm(HelpRequestType::class, $helpRequest);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $request->setAuthor($this->getUser());
+            $helpRequest->setAuthor($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($request);
+            $entityManager->persist($helpRequest);
             $entityManager->flush();
+
+            return $this->redirectToRoute('home');
         }
-
+        
         $users = $userRepository->findBy([]);
-
         return $this->render('home/index.html.twig', [
             'form' => $form->createView(), 'users' => $users
         ]);
