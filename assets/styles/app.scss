@@ -58,12 +58,16 @@ body {
     .nav-link a {
         width:fit-content;
     }
-    .navbar img {
+    .nav-link img {
         height: 30px;
         width: 30px;
         border-radius: 50%;
     }
 
+    #navbarDropdownMenuLink {
+        background-color: #ffffff00;
+    }
+    
     .green {
         color: $green;
     }
