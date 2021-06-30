@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Fiverr - Plateforme de services freelances pour entreprises{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {{ encore_entry_script_tags('custom') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('rightcolumn') }}
+    {{ encore_entry_link_tags('profil') }}
+{% endblock %}
+
+{% block body %}
+  {% include "component/_header.hml.twig" %}
+    <div class="fake-content row d-flex justifify-content-center col-12 m-0 p-0">
+      {% include "component/_profil.html.twig" %}
+    </div>
+{% endblock %}

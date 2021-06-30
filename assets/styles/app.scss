@@ -1,7 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
 @import 'variables.scss';
-@import "~bootstrap/scss/bootstrap";
-
 * {
     box-sizing: border-box;
 }
@@ -14,8 +12,6 @@ body {
     height: 100vh;
     padding: 0;
     margin: 0;
-
-
     header {
         display: flex;
         flex-direction: column;
@@ -56,18 +52,16 @@ body {
         margin-left: 331px;
     }
     .nav-link a {
-        width:fit-content;
+        width: fit-content;
     }
     .nav-link img {
         height: 30px;
         width: 30px;
         border-radius: 50%;
     }
-
     #navbarDropdownMenuLink {
         background-color: #ffffff00;
     }
-    
     .green {
         color: $green;
     }
@@ -103,19 +97,16 @@ body {
         background-color: $green;
         color: $light;
     }
-
     .chat {
         width: 80%;
         padding: 0;
         margin: 0;
     }
-
     .rightColumn {
         border-left: 1px solid grey;
         width: 20%;
         height: 100%;
     }
-
     .fake-content {
         height: 100%;
         width: auto;
