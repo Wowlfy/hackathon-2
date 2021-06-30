@@ -35,8 +35,15 @@ class HomeController extends AbstractController
         }
         
         $users = $userRepository->findBy([]);
+
+        $helpRequests = $this->getDoctrine()
+        ->getRepository(HelpRequest::class)
+        ->findAll();
+
         return $this->render('home/index.html.twig', [
-            'form' => $form->createView(), 'users' => $users
+            'form' => $form->createView(),
+            'helpRequests' => $helpRequests,
+            'users' => $users
         ]);
     }
 }

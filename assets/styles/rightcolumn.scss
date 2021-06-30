@@ -98,3 +98,24 @@
     top: -100%;
     left: 0;
 }
+
+.card-title {
+    font-weight: 600;
+}
+
+.card-img-top {
+    height: 200px;
+    width: auto;
+}
+
+
+.carousel-inner .btn {
+    background-color: $light;
+    color: $green;
+    border: 1px solid $green;
+}
+
+.carousel-inner .btn:hover {
+    background-color: $green;
+    color: $light;
+}
